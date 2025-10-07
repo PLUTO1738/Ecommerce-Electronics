@@ -1,0 +1,72 @@
+/* General Styling for the Shop */
+.text-orange {
+    color: #FF6600 !important; /* Bright orange */
+}
+
+.btn-orange {
+    background-color: #FF6600; /* Filled orange background */
+    color: white; /* White text */
+    border: none; /* No border */
+    font-weight: 600;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.btn-orange:hover {
+    background-color: #CC5500; /* Darker orange on hover */
+}
+
+/* Category Title */
+.category-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase; /* Make category titles uppercase */
+    border-bottom: 3px solid #FF6600;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Product Card Styling */
+.product-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff; /* White background for product card */
+    box-shadow: 0px 4px 15px rgba(255, 102, 0, 0.5); /* Orange shadow around the whole card */
+    border: 1px solid #ddd; /* Light border for clear edges */
+}
+
+.product-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 20px rgba(255, 102, 0, 0.7); /* Stronger orange shadow on hover */
+}
+
+/* Card Body with Orange Shadow */
+.product-card .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Aligning 'Add to Cart' button at the bottom */
+.product-card .btn-orange {
+    margin-top: auto;
+    padding: 10px; /* Adjust padding for better button size */
+}
+
+/* Price styling */
+.card-text span {
+    font-size: 1.2rem;
+}
+
+/* General Styling */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FF6600;
+    border-bottom: 3px solid #FF6600;
+    padding-bottom: 10px;
+}

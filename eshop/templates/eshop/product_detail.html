@@ -1,0 +1,42 @@
+{% extends 'eshop/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} - Product Detail{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-6">
+                <div class="product-image-container">
+                    <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.name }}" class="img-fluid product-image">
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="col-md-6">
+                <h1 class="product-title  text-orange font-bold">{{ product.name }}</h1>
+                
+                <div class="product-description-box">
+                    <p class="product-description text-orange">{{ product.description }}</p>
+                </div>
+                
+                <p class="product-price text-orange">Price: <span class="text-orange">${{ product.price }}</span></p>
+
+                {% if product.available %}
+                    <p class="text-success fw-bold">✔ In Stock</p>
+                    <form method="post" action="{% url 'eshop:add_to_cart' product_id=product.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="quantity" class="text-orange fw-bold">Quantity:</label>
+                            <input type="number" class="form-control quantity-input" name="quantity" value="1" min="1" max="10">
+                        </div>
+                        <button type="submit" class="btn btn-orange btn-lg btn-block mt-3">🛒 Add to Cart</button>
+                    </form>
+                {% else %}
+                    <p class="text-danger fw-bold">❌ Out of Stock</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

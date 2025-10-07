@@ -1,0 +1,141 @@
+/* ===== Orange Theme Colors ===== */
+:root {
+    --orange-dark: #d35400;
+    --orange-medium: #e67e22;
+    --orange-light: #f39c12;
+    --orange-bg: #fffaf0;
+    --orange-border: #f5b041;
+  }
+  
+  /* ===== Containers ===== */
+  .order-history-container,
+  .order-details-container {
+    background-color: var(--orange-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(211, 84, 0, 0.2);
+  }
+  
+  /* ===== Headings ===== */
+  .heading-orange {
+    color: var(--orange-dark);
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sub-heading-orange {
+    color: var(--orange-medium);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* ===== Order Date Text ===== */
+  .order-date {
+    color: var(--orange-dark);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* ===== Billing Information List ===== */
+  .billing-info {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .billing-info li {
+    background-color: #fef5e7;
+    border: 1px solid var(--orange-border);
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    color: var(--orange-dark);
+  }
+  
+  /* ===== Table Styles ===== */
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    color: var(--orange-dark);
+  }
+  
+  .order-table thead {
+    background-color: var(--orange-medium);
+    color: #fff;
+  }
+  
+  .order-table th,
+  .order-table td {
+    border: 1px solid var(--orange-border);
+    padding: 12px 15px;
+    text-align: center;
+  }
+  
+  .order-table tbody tr:nth-child(even) {
+    background-color: #fef5e7;
+  }
+  
+  .order-table tbody tr:hover {
+    background-color: #fdebd0;
+  }
+  
+  /* ===== Total Price Paragraph ===== */
+  .total-price {
+    color: var(--orange-dark);
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 1.5rem;
+  }
+  
+  /* ===== View Button (from order history) ===== */
+  .btn-view {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--orange-light);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-view:hover {
+    background-color: var(--orange-medium);
+  }
+  
+  /* ===== No Orders Message ===== */
+  .no-orders {
+    text-align: center;
+    color: var(--orange-medium);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  
+  /* ===== Responsive Tweaks ===== */
+  @media (max-width: 768px) {
+    .order-history-container,
+    .order-details-container {
+      padding: 1rem;
+    }
+  
+    .order-table th,
+    .order-table td {
+      font-size: 0.85rem;
+      padding: 10px;
+    }
+  
+    .btn-view {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  
+    .total-price {
+      text-align: center;
+    }
+  }

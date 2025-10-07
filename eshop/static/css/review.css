@@ -1,0 +1,123 @@
+/* ===== Orange Theme Colors ===== */
+:root {
+    --orange-dark: #d35400;
+    --orange-medium: #e67e22;
+    --orange-light: #f39c12;
+    --orange-bg: #fffaf0;
+    --orange-border: #f5b041;
+  }
+  
+  /* ===== General Page Layout ===== */
+  body {
+    background-color: #ffffff;
+    color: var(--orange-dark);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .heading-orange {
+    color: var(--orange-dark);
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* ===== Review Cards ===== */
+  .review-card {
+    background-color: #fef5e7;
+    border: 1px solid var(--orange-border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 6px rgba(211, 84, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(211, 84, 0, 0.2);
+  }
+  
+  .product-name {
+    font-size: 1.5rem;
+    color: var(--orange-medium);
+    margin-bottom: 10px;
+  }
+  
+  .rating {
+    font-size: 1.1rem;
+    color: var(--orange-dark);
+    margin-bottom: 10px;
+  }
+  
+  .comment {
+    font-size: 1rem;
+    color: #5c4033;
+    margin-bottom: 15px;
+  }
+  
+  .review-meta {
+    font-size: 0.9rem;
+    color: var(--orange-light);
+    text-align: right;
+  }
+  
+  /* ===== Product List for Reviews ===== */
+  .product-list {
+    list-style: none;
+    padding: 0;
+    width: 60%;
+    margin: 0 auto;
+  }
+  
+  .product-item {
+    background-color: #fef5e7;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--orange-border);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .product-item:hover {
+    background-color: #fdebd0;
+    transform: translateX(5px);
+  }
+  
+  .product-link {
+    text-decoration: none;
+    color: var(--orange-medium);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .product-link:hover {
+    color: var(--orange-dark);
+  }
+  
+  /* ===== Empty State Messages ===== */
+  .no-products,
+  .no-reviews {
+    text-align: center;
+    color: var(--orange-medium);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  
+  /* ===== Responsive Design ===== */
+  @media (max-width: 768px) {
+    .review-card,
+    .product-list {
+      width: 90%;
+    }
+  
+    .heading-orange {
+      font-size: 1.5rem;
+    }
+  
+    .product-link {
+      font-size: 1rem;
+    }
+  }
+  

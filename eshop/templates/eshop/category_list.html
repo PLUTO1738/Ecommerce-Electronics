@@ -1,0 +1,17 @@
+{% extends 'eshop/base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1 class="category-title text-center">Shop Categories</h1>
+
+    <ul class="category-list">
+      {% for category in categories %}
+        <li class="category-item">
+          <a href="{% url 'eshop:category_detail' category.slug %}" class="category-link">
+            {{ category.name|title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'eshop/base.html' %}
+
+{% block content %}
+<div class="order-details-container">
+  <h1 class="heading-orange">Order Details (#{{ order.id }})</h1>
+  <p class="order-date">Order Date: {{ order.created }}</p>
+
+  <h2 class="sub-heading-orange">Billing Information:</h2>
+  <ul class="billing-info">
+    <li>{{ order.first_name }} {{ order.last_name }}</li>
+    <li>{{ order.email }}</li>
+    <li>{{ order.address }}</li>
+    <li>{{ order.postal_code }} {{ order.city }}</li>
+  </ul>
+
+  <h2 class="sub-heading-orange">Order Items:</h2>
+  <table class="order-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+        <tr>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.price }}</td>
+          <td>${{ item.get_total_price }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p class="total-price">Total Price: ${{ order.get_total_price }}</p>
+</div>
+{% endblock %}

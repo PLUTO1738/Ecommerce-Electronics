@@ -1,0 +1,80 @@
+/* General Styles */
+body {
+    font-family: 'Open Sans', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; 
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+}
+
+/* Container Styles */
+.container {
+    min-height: 500px; 
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f9fa; 
+    margin-top: 20px; 
+    padding: 20px 0; 
+}
+
+/* Button Styles */
+.btn-outline-success {
+    border-color: #28a745; 
+    color: #28a745; 
+}
+
+/* Product Card Styles */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Image Styles */
+.product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Product Title Styles */
+.product-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Product Price Styles */
+.product-price {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif; /* Example: Use Montserrat for headings */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust card width for smaller screens */
+    }
+}
+
+/* Example: Color Variations */
+/* body {
+    background-color: #f5f5f5; 
+}
+.navbar {
+    background-color: #333; 
+    color: #fff; 
+} */

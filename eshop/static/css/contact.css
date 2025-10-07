@@ -1,0 +1,194 @@
+/* ===== Orange Theme Colors ===== */
+:root {
+    --orange-dark: #d35400;
+    --orange-medium: #e67e22;
+    --orange-light: #f39c12;
+    --orange-bg: #fffaf0;
+    --orange-border: #f5b041;
+    --neutral-dark: #333333;
+    --neutral-light: #ffffff;
+  }
+  
+  /* ===== General Layout ===== */
+  body {
+    background-color: var(--neutral-light);
+    color: var(--neutral-dark);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* ===== Section Titles ===== */
+  .section-title {
+    color: var(--orange-dark);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* ===== Intro Text ===== */
+  .intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--orange-medium);
+    margin-bottom: 40px;
+  }
+  
+  /* ===== Features ===== */
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .feature-card {
+    background-color: #fef5e7;
+    border: 1px solid var(--orange-border);
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1 1 45%;
+    box-shadow: 0 4px 8px rgba(211, 84, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-card h2 {
+    color: var(--orange-medium);
+    margin-bottom: 10px;
+  }
+  
+  .feature-card ul {
+    padding-left: 20px;
+    list-style: none;
+  }
+  
+  .feature-card ul li::before {
+    content: "✓";
+    color: var(--orange-light);
+    margin-right: 8px;
+  }
+  
+  /* ===== Team Section ===== */
+  .team {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .team h2 {
+    color: var(--orange-dark);
+    margin-bottom: 10px;
+  }
+  
+  .team p {
+    color: var(--neutral-dark);
+    font-size: 1rem;
+  }
+  
+  /* ===== Contact Info ===== */
+  .contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  
+  .info-item {
+    background-color: #fef5e7;
+    border: 1px solid var(--orange-border);
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(211, 84, 0, 0.1);
+  }
+  
+  .info-item h3 {
+    color: var(--orange-medium);
+    margin-bottom: 8px;
+  }
+  
+  /* ===== Contact Form ===== */
+  .contact-form {
+    background-color: #fef5e7;
+    border: 1px solid var(--orange-border);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(211, 84, 0, 0.1);
+  }
+  
+  .contact-form h2 {
+    color: var(--orange-dark);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    color: var(--orange-medium);
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--orange-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--neutral-light);
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--orange-light);
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+  }
+  
+  /* ===== Submit Button ===== */
+  .btn-submit {
+    display: block;
+    width: 100%;
+    background-color: var(--orange-medium);
+    color: var(--neutral-light);
+    padding: 12px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-submit:hover {
+    background-color: var(--orange-dark);
+    transform: translateY(-2px);
+  }
+  
+  /* ===== Responsive Design ===== */
+  @media (max-width: 768px) {
+    .features {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .contact-info {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  

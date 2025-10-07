@@ -1,0 +1,36 @@
+{% extends 'eshop/base.html' %}
+
+{% block content %}
+<div class="order-history-container">
+  <h1 class="heading-orange">ORDER HISTORY</h1>
+  
+  {% if orders %}
+    <div class="table-responsive">
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.created }}</td>
+              <td>${{ order.get_total_price }}</td>
+              <td>
+                <a href="{% url 'eshop:order_detail' order.id %}" class="btn-view">View</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="no-orders">You have no past orders.</p>
+  {% endif %}
+</div>
+{% endblock %}

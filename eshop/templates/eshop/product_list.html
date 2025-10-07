@@ -1,0 +1,37 @@
+{% extends 'eshop/base.html' %}
+{% load static %}
+
+{% block title %}Product list{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+    <!-- Thick Orange Line -->
+    <hr class="orange-line mb-4">
+
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100 d-flex flex-column shadow-sm border-0 position-relative">
+                    <!-- Clickable overlay for the entire card -->
+                    <a href="{% url 'eshop:product_detail' slug=product.slug %}" class="stretched-link"></a>
+
+                    <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.name }}" class="card-img-top">
+
+                    <div class="card-body d-flex flex-column flex-grow-1">
+                        <h5 class="card-title text-orange">{{ product.name }}</h5>
+
+                        <!-- Spacer pushes price & button to the bottom -->
+                        <div class="mt-auto">
+                            <p class="card-text text-muted mb-2">Price: <span class="text-orange fw-bold">${{ product.price }}</span></p>
+                            
+                            <!-- Add to Cart Button (Remains Clickable) -->
+                            <a href="{% url 'eshop:add_to_cart' product.id %}" class="btn btn-orange w-100 position-relative">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

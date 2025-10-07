@@ -1,0 +1,88 @@
+/* Orange Aesthetic Styling */
+.title-orange {
+    color: #FF6F00;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.register-card {
+    border-radius: 16px;
+    border: 2px solid #FF6F00;
+    box-shadow: 0 8px 16px rgba(255, 111, 0, 0.2);
+    background-color: #FFF3E0;
+    padding: 2rem;
+}
+
+.form-label-orange {
+    color: #FF6F00;
+    font-weight: 500;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+    border: 2px solid #FFB74D;
+    border-radius: 8px;
+    padding: 8px;
+    background-color: #FFECB3;
+    transition: border-color 0.3s;
+}
+
+.register-form input:focus {
+    border-color: #FF6F00;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 111, 0, 0.3);
+}
+
+.btn-deep-orange {
+    background-color: #FF6F00;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(255, 111, 0, 0.4);
+}
+
+.btn-orange {
+    background-color: #FF6F00 !important; /* Deep Orange */
+    color: white !important; /* Ensure text stays white */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-deep-orange:hover {
+    background-color: #E65100;
+    box-shadow: 0 6px 12px rgba(255, 111, 0, 0.6);
+}
+
+.error-message {
+    color: #D32F2F;
+    font-size: 0.875rem;
+}
+
+small.form-text {
+    color: #FF8A65;
+    font-style: italic;
+}
+/* Ensure all input fields are consistent */
+.form-control {
+    border: 2px solid #FFB74D;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #FFECB3;
+    transition: border-color 0.3s;
+    width: 100%; /* Ensure full width */
+}
+
+/* Focus effect for better UX */
+.form-control:focus {
+    border-color: #FF6F00;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 111, 0, 0.3);
+}

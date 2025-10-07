@@ -1,0 +1,35 @@
+.bg-orange {
+    background-color: #FF9800 !important; /* Ensures deep orange background */
+}
+
+.footer-text {
+    color: white !important;
+    font-weight: bold;
+}
+
+.footer-card {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.footer-card:hover {
+    background: rgba(255, 255, 255, 0.4); /* Slightly lighter on hover */
+    transform: scale(1.05);
+}
+
+.footer-link {
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-link:hover {
+    color: #FF6F00 !important; /* Gold on hover */
+    text-decoration: none;
+}

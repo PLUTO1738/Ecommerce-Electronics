@@ -1,0 +1,461 @@
+/* General Styles */
+body {
+    font-family: 'Open Sans', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; 
+}
+
+/* Base styles for navigation links */
+.navbar-nav .nav-link {
+    color: white; 
+    font-weight: bold; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff6600; /* Orange hover effect */
+    text-decoration: none; 
+}
+
+.navbar-nav .nav-link.active {
+    color: #ff6600; /* Active link in orange */
+}
+
+/* Category Title Styling */
+.category-title {
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6600;
+    border-bottom: 3px solid #ff6600;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* Product Card Styles */
+.product-card {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #ffefe6 10%, #ffd1a6 90%); /* Soft orange gradient */
+    border: 3px solid #ff6600; /* Strong orange border */
+    box-shadow: 0px 5px 20px rgba(255, 102, 0, 0.7), 0px 0px 10px rgba(255, 85, 0, 0.9); /* Orange contrast shadow */
+    transition: all 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 10px 25px rgba(255, 102, 0, 0.9), 0px 0px 15px rgba(255, 85, 0, 1); /* Deeper orange glow */
+}
+
+/* Card Body */
+.product-card .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Product Title */
+.product-card .card-title a {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ff6600; /* Orange text */
+    text-decoration: none;
+}
+
+.product-card .card-title a:hover {
+    color: #cc5200; /* Darker orange on hover */
+}
+
+/* Product Price */
+.product-card .card-text {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Add to Cart Button */
+.btn-orange {
+    background-color: #cc4400; /* Deep Orange */
+    color: white;
+    font-size: 9rem;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid black; /* Black edges */
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3); /* Button shadow */
+}
+
+.btn-orange:hover {
+    background-color: #aa3300; /* Darker deep orange */
+    color: white !important;
+    border-color: black; /* Ensure black edges remain */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+}
+
+/* Ensure Add to Cart Button is Aligned */
+.product-card .btn-orange {
+    margin-top: auto;
+}
+
+/* Cart Icon Styles */
+.cart-icon-wrapper {
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-icon-wrapper:hover {
+    background-color: rgba(255, 102, 0, 0.2); /* Light orange hover effect */
+}
+
+.cart-icon {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold; /* Make the text bold */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Category Title */
+.category-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6600;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ff6600;
+    padding-bottom: 5px;
+}
+
+/* Category List - Align Left */
+.category-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-width: 300px; /* Keep it neatly aligned to the left */
+}
+
+/* Category Items */
+.category-item {
+    background-color: #fff;
+    border-left: 5px solid #ff6600; /* Orange border on the left */
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 2px 4px 10px rgba(255, 102, 0, 0.3); /* Orange shadow */
+    transition: all 0.3s ease-in-out;
+    text-transform: capitalize; /* Capitalize first letter */
+}
+
+.category-item:hover {
+    background-color: #ff6600;
+    color: white;
+    box-shadow: 3px 6px 15px rgba(255, 102, 0, 0.5);
+}
+
+/* Category Links */
+.category-link {
+    color: #ff6600; /* Orange text */
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    transition: color 0.3s ease;
+}
+
+.category-item:hover .category-link {
+    color: white; /* White text on hover */
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .category-title {
+        font-size: 1.5rem;
+    }
+    .product-card {
+        margin-bottom: 20px;
+ 
+    }
+    /* Product Detail Page Styling */
+.product-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6600; /* Orange Title */
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff6600;
+    margin-bottom: 10px;
+}
+
+/* Product Image Styling */
+.product-image-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 102, 0, 0.5); /* Orange glow effect */
+    border: 2px solid #ff6600;
+    background: #fff;
+}
+
+.product-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Quantity Input */
+.quantity-input {
+    width: 100px;
+    border: 2px solid #ff6600;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Orange Themed Add to Cart Button */
+.btn-orange {
+    background-color: #ff6600;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+.btn-orange:hover {
+    background-color: #cc5200; /* Deep Orange */
+    color: white;
+    border-color: black;
+}
+
+/* Login Page Styling */
+.login-card {
+    background-color: #fff3e6;
+    border: 2px solid #ff6600;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 102, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Orange Title */
+.login-card .card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6600;
+    text-shadow: 2px 2px 4px rgba(255, 102, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.login-card .form-group {
+    text-align: left;
+}
+
+/* Labels */
+.login-card .form-label {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ff6600;
+}
+
+/* Username & Password Fields */
+.input-orange {
+    border: 2px solid #ff6600;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff8f3;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-orange:focus {
+    border-color: #cc5200;
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.7);
+    outline: none;
+}
+
+/* Login Button */
+.btn-orange {
+    background-color: #ff6600;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-orange:hover {
+    background-color: #cc5200;
+    color: white;
+    border-color: black;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 15px;
+    }
+    .login-card .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* 🔥 Global Orange Theme */
+.text-orange {
+    color: #ff6600 !important;
+    font-weight: bold;
+}
+
+/* 🔥 Make Everything Orange */
+body {
+    color: #ff6600 !important;
+}
+
+/* 🔥 Bold Orange Title */
+.title-orange {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4500 !important;
+    text-shadow: 3px 3px 5px rgba(255, 69, 0, 0.6);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 🔥 Register Card */
+.register-card {
+    background: linear-gradient(135deg, #fff5e1, #ffdab9);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(255, 102, 0, 0.4);
+    padding: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🔥 Form Styling */
+.register-form .form-group {
+    display: flex;
+    align-items: center;
+}
+
+/* 🔥 Form Labels */
+.form-label-orange {
+    font-weight: bold;
+    color: #ff6600;
+    font-size: 1.1rem;
+    text-align: right;
+    padding-right: 10px;
+}
+
+/* 🔥 Input Fields */
+.register-form input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ff4500;
+    border-radius: 8px;
+    background-color: #fff9f2;
+    font-size: 1rem;
+    color: #333;
+    transition: 0.3s;
+}
+
+/* 🔥 Focus Effect */
+.register-form input:focus {
+    border-color: #ff6600;
+    box-shadow: 0px 4px 10px rgba(255, 102, 0, 0.3);
+    outline: none;
+}
+
+/* 🔥 Error Messages */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    color: red;
+    font-size: 0.9rem;
+}
+
+/* 🔥 Register Button */
+.btn-deep-orange {
+    background-color: #ff4500;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-deep-orange:hover {
+    background-color: #cc3700;
+}
+
+/* 🔥 Mobile Responsiveness */
+@media (max-width: 768px) {
+    .register-card {
+        padding: 15px;
+    }
+    .register-card .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .product-title {
+        font-size: 1.5rem;
+    }
+
+    .product-description {
+        font-size: 1rem;
+    }
+
+    .product-price {
+        font-size: 1.2rem;
+    }
+}
+}

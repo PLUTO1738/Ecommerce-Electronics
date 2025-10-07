@@ -1,0 +1,16 @@
+{% extends 'eshop/base.html' %}
+
+{% block content %}
+<h1 class="heading-orange">All Product Reviews</h1>
+
+{% for review in reviews %}
+    <div class="review-card">
+        <h3 class="product-name">{{ review.product.name }}</h3>
+        <p class="rating">Rating: {{ review.rating }}/5</p>
+        <p class="comment">{{ review.comment }}</p>
+        <p class="review-meta">By: {{ review.user.username }} on {{ review.created|date:"F d, Y" }}</p>
+    </div>
+{% empty %}
+    <p class="no-reviews">No reviews yet.</p>
+{% endfor %}
+{% endblock %}

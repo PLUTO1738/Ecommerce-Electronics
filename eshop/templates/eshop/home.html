@@ -1,0 +1,45 @@
+{% extends 'eshop/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center my-4 text-orange fw-bold">Electronics Company Shop</h1>
+
+        {% for category in categories %}
+            <div class="category-section mb-5">
+                <h2 class="category-title text-orange text-uppercase">{{ category.name }}</h2>
+
+                {% if category.products.all %}
+    <div class="row">
+        {% for product in category.products.all %}
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100 d-flex flex-column shadow-sm border-0 position-relative">
+                    <!-- Clickable Overlay for the Entire Card -->
+                    <a href="{% url 'eshop:product_detail' slug=product.slug %}" class="stretched-link"></a>
+
+                    <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.name }}" class="card-img-top">
+                    
+                    <div class="card-body d-flex flex-column flex-grow-1">
+                        <h5 class="card-title text-orange">{{ product.name }}</h5>
+                        
+                        <!-- Spacer to push price and cart button to the bottom -->
+                        <div class="mt-auto">
+                            <p class="card-text text-muted mb-2">Price: <span class="text-orange fw-bold">${{ product.price }}</span></p>
+                            
+                            <!-- Add to Cart Button (Still Clickable) -->
+                            <a href="{% url 'eshop:add_to_cart' product.id %}" class="btn btn-orange w-100 position-relative">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">No products available in this category.</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p class="text-muted text-center">No categories available.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
