@@ -293,12 +293,15 @@ def about_view(request):
 
 @csrf_exempt
 def contact_view(request):
-    if request.method == "POST":
-        message = request.POST.get("message", "").lower()
-        response = "Sorry, I didn't understand that."
+    message = request.GET.get("message", "") or request.POST.get("message", "")
+    if not message:
+        return JsonResponse({"response": "Hi! Send a message to chat."})
+    message = message.lower()
+    response = "Sorry, I didn't understand that."
+
 
         # Product search
-        if "product" in message:
+    if "product" in message:
             matching_products = Product.objects.filter(name__icontains=message)
 
             if matching_products.exists():
@@ -310,7 +313,7 @@ def contact_view(request):
                 response = "No matching products found. Browse our catalog!"
 
         # Reviews
-        elif "review" in message:
+    elif "review" in message:
             recent_reviews = ProductReview.objects.order_by('-created')[:3]
             if recent_reviews.exists():
                 response = "Recent customer reviews:\n"
@@ -320,23 +323,23 @@ def contact_view(request):
                 response = "No reviews yet. Check individual product pages!"
 
         # General rules
-        elif any(word in message for word in ["hello", "hi", "hey"]):
+    elif any(word in message for word in ["hello", "hi", "hey"]):
             response = "Hi! Welcome to E-SHOP support. Ask about products, orders, delivery. Type 'help' for examples."
 
-        elif "delivery" in message or "shipping" in message:
+    elif "delivery" in message or "shipping" in message:
             response = "Delivery: 2-3 business days. Free shipping on orders over $100!"
 
-        elif "payment" in message:
+    elif "payment" in message:
             response = "Payments: Mobile Money, Bank Transfer, Cards. Secure checkout process."
 
-        elif "order" in message:
+    elif "order" in message:
             response = "Log in to track your orders and view status updates."
 
-        elif "contact" in message:
+    elif "contact" in message:
             response = "Contact: support@eshop.com | 1-800-ESHOP | Use footer links."
 
         # Help response
-        if any(word in message for word in ["help", "examples", "what can you do", "?"]):
+    if any(word in message for word in ["help", "examples", "what can you do", "?"]):
             help_text = """I can help with:
 • Product prices/info (e.g., "iPhone price")
 • Delivery/shipping ("delivery time")
@@ -346,8 +349,6 @@ def contact_view(request):
 • Type naturally!"""
             return JsonResponse({"response": help_text})
 
-        return JsonResponse({"response": response})
 
-    # GET request → render contact page
-    return render(request, 'eshop/contact.html')
+
 

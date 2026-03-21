@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chatReplies.scrollTop = chatReplies.scrollHeight;
 
         // Bot response
-        fetch(`/chatbot/?message=${encodeURIComponent(message)}`)
+        fetch(`/contact/?message=${encodeURIComponent(message)}`)
             .then(response => response.json())
             .then(data => {
                 chatReplies.innerHTML += `

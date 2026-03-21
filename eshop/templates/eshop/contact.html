@@ -21,22 +21,20 @@
       </div>
     </div>
 
-    <form class="contact-form">
-      <h2>Send Us a Message</h2>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Your name" required>
+    <div class="contact-form text-center py-5">
+      <h2>🚀 Live Support Available!</h2>
+      <p class="lead text-muted mb-4">Get instant help with products, orders, and more.</p>
+      <a href="{% url 'eshop:support' %}" class="btn btn-orange btn-lg px-5 py-3 mb-4 d-block mx-auto" style="max-width: 300px; font-size: 1.3rem;">
+        <i class="bi bi-chat-dots me-2"></i>Start Live Chat
+      </a>
+      <p class="text-muted">Our support bot is ready 24/7!</p>
+      <div class="contact-info mt-5">
+        <div class="info-item">
+          <h3>📧 Email</h3>
+          <p>support@electroshop.com</p>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Your email" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" rows="5" placeholder="Your message" required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Send Message</button>
-    </form>
+    </div>
   </div>
 </section>
 {% endblock %}

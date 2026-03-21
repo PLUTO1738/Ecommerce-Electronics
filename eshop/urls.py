@@ -45,7 +45,6 @@ urlpatterns = [
     #payment 
     path('payment/<int:order_id>/', views.payment_select, name='payment_select'),
 
-    # Chat & Support
-    path('chatbot/', views.chatbot, name='chatbot'),
+    # Support & Contact (chatbot via contact)
     path('support/', views.support_view, name='support'),
 ]
