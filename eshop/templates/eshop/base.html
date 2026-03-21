@@ -81,8 +81,8 @@
         {% csrf_token %}
         {% block content %}
         {% endblock %}
-    </div>
-    <footer class="bg-dark text-white text-center py-3 mt-auto shadow-lg">
+    </main>
+    <footer class="bg-warning text-white text-center py-3 mt-auto shadow-lg">
         <div class="container">
             <p class="footer-text mb-3">&copy; {% now "Y" %} My Ecommerce Site. All rights reserved.</p>
             
@@ -113,3 +113,5 @@
     
     {% bootstrap_javascript %}
     {% block scripts %}{% endblock %} 
+</body>
+</html>

@@ -1,8 +1,6 @@
 {% extends 'eshop/base.html' %}
 {% load static %}
 
-{% block title %}Support Chat - E-SHOP{% endblock %}
-
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -17,7 +15,7 @@
                         <div class="welcome-msg text-center text-muted py-3">
                             <i class="bi bi-robot fs-3 text-orange mb-2 d-block"></i>
                             <strong>Hello! I'm here to help.</strong><br>
-                            Try asking: "iPhone price", "delivery time", "order status"
+                            <small class="text-muted">Click suggestions below or type naturally!</small>
                         </div>
                     </div>
                     <div class="input-group">
@@ -25,6 +23,10 @@
                         <button id="chat-send" class="btn btn-orange">
                             <i class="bi bi-send"></i> Send
                         </button>
+                    </div>
+                    <div id="suggestions" class="suggestions mt-3">
+                        <small class="text-muted">Suggested:</small>
+                        <div class="btn-group btn-group-sm mt-1 flex-wrap" role="group"></div>
                     </div>
                 </div>
             </div>
@@ -55,6 +57,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     chatSend.addEventListener("click", sendMessage);
+
+    const suggestions = [
+        'iPhone price', 'MacBook specs', 'delivery time',
+        'order status', 'payment methods', 'show reviews',
+        'shipping cost', 'help'
+    ];
+
+    function initSuggestions() {
+        const btnGroup = document.querySelector('#suggestions .btn-group');
+        suggestions.forEach(suggestion => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn btn-outline-orange btn-sm me-1 mb-1';
+            btn.textContent = suggestion;
+            btn.onclick = () => {
+                chatInput.value = suggestion;
+                chatInput.focus();
+            };
+            btnGroup.appendChild(btn);
+        });
+    }
 
     function sendMessage() {
         const message = chatInput.value.trim();
@@ -96,6 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 chatReplies.scrollTop = chatReplies.scrollHeight;
             });
     }
+
+    // Init
+    initSuggestions();
 });
 </script>
 {% endblock %}

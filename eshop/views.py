@@ -11,6 +11,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegisterForm, PaymentForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -289,52 +291,63 @@ def support_view(request):
 def about_view(request):
     return render(request, 'eshop/about.html')
 
+@csrf_exempt
 def contact_view(request):
+    if request.method == "POST":
+        message = request.POST.get("message", "").lower()
+        response = "Sorry, I didn't understand that."
+
+        # Product search
+        if "product" in message:
+            matching_products = Product.objects.filter(name__icontains=message)
+
+            if matching_products.exists():
+                response = "Found matching products:\n"
+                for p in matching_products:
+                    response += f"• {p.name}: ${p.price}\n"
+                response += "Visit products page for more."
+            else:
+                response = "No matching products found. Browse our catalog!"
+
+        # Reviews
+        elif "review" in message:
+            recent_reviews = ProductReview.objects.order_by('-created')[:3]
+            if recent_reviews.exists():
+                response = "Recent customer reviews:\n"
+                for r in recent_reviews:
+                    response += f"• {r.product.name}: {r.rating}/5\n"
+            else:
+                response = "No reviews yet. Check individual product pages!"
+
+        # General rules
+        elif any(word in message for word in ["hello", "hi", "hey"]):
+            response = "Hi! Welcome to E-SHOP support. Ask about products, orders, delivery. Type 'help' for examples."
+
+        elif "delivery" in message or "shipping" in message:
+            response = "Delivery: 2-3 business days. Free shipping on orders over $100!"
+
+        elif "payment" in message:
+            response = "Payments: Mobile Money, Bank Transfer, Cards. Secure checkout process."
+
+        elif "order" in message:
+            response = "Log in to track your orders and view status updates."
+
+        elif "contact" in message:
+            response = "Contact: support@eshop.com | 1-800-ESHOP | Use footer links."
+
+        # Help response
+        if any(word in message for word in ["help", "examples", "what can you do", "?"]):
+            help_text = """I can help with:
+• Product prices/info (e.g., "iPhone price")
+• Delivery/shipping ("delivery time")
+• Orders ("order status") 
+• Payments ("payment methods")
+• Reviews ("show reviews")
+• Type naturally!"""
+            return JsonResponse({"response": help_text})
+
+        return JsonResponse({"response": response})
+
+    # GET request → render contact page
     return render(request, 'eshop/contact.html')
-
-def chatbot(request):
-    message = request.GET.get("message", "").lower()
-
-    response = "Sorry, I didn't understand that. Try asking about specific products or general questions."
-
-    # DB-driven product search
-    if 'price' in message or any(word in message for word in ['iphone', 'samsung', 'macbook', 'ipad', 's24']):
-        matching_products = Product.objects.filter(
-            Q(name__icontains=message) | Q(description__icontains=message)
-        )[:3]
-        if matching_products.exists():
-            response = f"Found matching products:\n"
-            for p in matching_products:
-                response += f"• {p.name}: ${p.price}\n"
-            response += "Visit products page for more."
-        else:
-            response = "No matching products found. Browse our catalog!"
-
-    # Reviews
-    elif "review" in message:
-        recent_reviews = ProductReview.objects.order_by('-created')[:3]
-        if recent_reviews.exists():
-            response = "Recent customer reviews:\n"
-            for r in recent_reviews:
-                response += f"• {r.product.name}: {r.rating}/5\n"
-        else:
-            response = "No reviews yet. Check individual product pages!"
-
-    # General rules
-    elif "hello" in message or "hi" in message:
-        response = "Hi! Welcome to E-SHOP support. How can I help with products, prices, or orders?"
-
-    elif "delivery" in message or "shipping" in message:
-        response = "Delivery: 2-3 business days. Free shipping on orders over $100!"
-
-    elif "payment" in message:
-        response = "Payments: Mobile Money, Bank Transfer, Cards. Secure checkout process."
-
-    elif "order" in message:
-        response = "Log in to track your orders and view status updates."
-
-    elif "contact" in message:
-        response = "Contact: support@eshop.com | 1-800-ESHOP | Use footer links."
-
-    return JsonResponse({"response": response})
 
