@@ -1,0 +1,26 @@
+{% extends 'eshop/base.html' %}
+
+{% block content %}
+<div class="order-details-container">
+  <h1 class="heading-orange">Payment - Order #{{ order.id }}</h1>
+  
+  <div class="alert alert-info mb-4">
+    <h5>Total: <strong>${{ order.get_total_cost }}</strong></h5>
+    <p class="mb-0">Reference: ORDER-{{ order.id }}</p>
+    <small class="d-block mt-1">Submit details → Make payment → Admin will verify within 24h</small>
+  </div>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{ form.payment_method.label_tag }}
+      {{ form.payment_method }}
+    </div>
+    <div class="mb-3">
+      {{ form.account_number.label_tag }}
+      {{ form.account_number }}
+    </div>
+    <button type="submit" class="btn btn-orange w-100 py-2">Submit Payment Details</button>
+  </form>
+</div>
+{% endblock %}

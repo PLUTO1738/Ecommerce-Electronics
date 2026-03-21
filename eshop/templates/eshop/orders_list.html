@@ -2,35 +2,38 @@
 
 {% block content %}
 <div class="order-history-container">
-  <h1 class="heading-orange">ORDER HISTORY</h1>
+  <h1 class="heading-orange">Your Orders</h1>
   
   {% if orders %}
-    <div class="table-responsive">
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Date</th>
-            <th>Total Price</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for order in orders %}
-            <tr>
-              <td>{{ order.id }}</td>
-              <td>{{ order.created }}</td>
-              <td>${{ order.get_total_price }}</td>
-              <td>
-                <a href="{% url 'eshop:order_detail' order.id %}" class="btn-view">View</a>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>#{{ order.id }}</td>
+          <td>{{ order.created|date:"M d, Y" }}</td>
+          <td>
+            <span class="badge bg-{% if order.status == 'PAID' %}success{% else %}warning{% endif %}">{{ order.status }}</span>
+            {% if order.paid %}<small class="text-success">✓ PAID</small>{% endif %}
+          </td>
+          <td>${{ order.get_total_price }}</td>
+          <td><a href="{% url 'eshop:order_detail' order.id %}" class="btn-view">View</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% else %}
-    <p class="no-orders">You have no past orders.</p>
+    <div class="no-orders">
+      <p>No orders yet. <a href="{% url 'eshop:home' %}">Start shopping</a></p>
+    </div>
   {% endif %}
 </div>
 {% endblock %}

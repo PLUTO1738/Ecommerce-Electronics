@@ -1,37 +1,161 @@
 {% extends 'eshop/base.html' %}
 {% load static %}
 
-{% block title %}Product list{% endblock %}
+{% block title %}Products - E-SHOP{% endblock %}
 
 {% block content %}
 <div class="container">
-    
+
     <!-- Thick Orange Line -->
     <hr class="orange-line mb-4">
 
-    <div class="row">
+    <h2 class="category-title text-center mb-4">Products</h2>
+
+    <!-- Advanced Filters -->
+    <div class="row mb-4 g-3">
+        <form method="GET" class="col-lg-9">
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <input type="text" name="q" class="form-control border-orange" placeholder="🔍 Search keywords..." value="{{ query|default:'' }}">
+                </div>
+                <div class="col-md-3">
+                    <select name="category" class="form-select" aria-label="Select category">
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {% if category_id == category.id|stringformat:'s' %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="price_min" class="form-control" placeholder="$ Min" value="{{ price_min|default:'' }}" min="0" step="0.01">
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="price_max" class="form-control" placeholder="$ Max" value="{{ price_max|default:'' }}" min="0" step="0.01">
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-orange w-100" aria-label="Apply filters"><i class="bi bi-funnel"></i> Filter</button>
+                </div>
+            </div>
+        </form>
+        <div class="col-lg-3">
+            <div class="row g-2 h-100 align-items-end">
+                <div class="col-8">
+                <select name="sort" class="form-select form-select-sm" onchange="this.form.submit()" id="sort-select" aria-label="Sort products">
+                        <option value="name" {% if sort == 'name' %}selected{% endif %}>A-Z</option>
+                        <option value="price" {% if sort == 'price' %}selected{% endif %}>Price Low</option>
+                        <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price High</option>
+                        <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="available_only" id="available-only" {% if available_only %}checked{% endif %} onchange="this.form.submit()">
+                        <label class="form-check-label small" for="available-only">
+                            Available Only
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Summary -->
+    <div class="mb-4">
+        <div class="alert alert-info">
+            <small><i class="bi bi-info-circle"></i> Showing <strong>{{ products|length }}</strong> of <strong>{{ products.paginator.count }}</strong> products 
+            {% if query %}(searched "{{ query }}"){% endif %}
+            </small>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="row g-4">
         {% for product in products %}
-            <div class="col-md-4 mb-4">
-                <div class="card product-card h-100 d-flex flex-column shadow-sm border-0 position-relative">
-                    <!-- Clickable overlay for the entire card -->
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card product-card h-100 shadow-sm border-0 position-relative overflow-hidden">
                     <a href="{% url 'eshop:product_detail' slug=product.slug %}" class="stretched-link"></a>
-
-                    <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.name }}" class="card-img-top">
-
-                    <div class="card-body d-flex flex-column flex-grow-1">
-                        <h5 class="card-title text-orange">{{ product.name }}</h5>
-
-                        <!-- Spacer pushes price & button to the bottom -->
+                    {% if product.image %}
+                        <img src="{% static 'images/' %}{{ product.image }}" alt="{{ product.name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
+                            No Image
+                        </div>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column p-3">
+                        <h6 class="card-title text-orange mb-2">{{ product.name|truncatechars:40 }}</h6>
+                        <p class="card-text small text-muted mb-2">{{ product.description|truncatechars:80 }}</p>
                         <div class="mt-auto">
-                            <p class="card-text text-muted mb-2">Price: <span class="text-orange fw-bold">${{ product.price }}</span></p>
-                            
-                            <!-- Add to Cart Button (Remains Clickable) -->
-                            <a href="{% url 'eshop:add_to_cart' product.id %}" class="btn btn-orange w-100 position-relative">Add to Cart</a>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="h5 text-orange fw-bold">${{ product.price }}</span>
+                                {% if not available_only or product.available %}
+                                    <span class="badge bg-success">In Stock</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Out of Stock</span>
+                                {% endif %}
+                            </div>
+                            <a href="{% url 'eshop:add_to_cart' product.id %}" class="btn btn-orange w-100">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-search display-1 text-muted mb-3"></i>
+                    <h4 class="text-muted">No products found</h4>
+                    <p class="text-muted">Try adjusting your search or filters</p>
+                    <a href="{% url 'eshop:product_list' %}" class="btn btn-orange">Clear Filters</a>
+                </div>
+            </div>
         {% endfor %}
-        </div>
     </div>
+
+    <!-- Pagination -->
+    {% if products.has_other_pages %}
+    <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+{% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if category_id %}category={{ category_id }}&{% endif %}{% if price_min %}price_min={{ price_min }}&{% endif %}{% if price_max %}price_max={{ price_max }}&{% endif %}{% if sort and sort != 'name' %}sort={{ sort }}&{% endif %}{% if available_only %}available_only=on&{% endif %}page={{ products.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+
+            {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if category_id %}category={{ category_id }}&{% endif %}{% if price_min %}price_min={{ price_min }}&{% endif %}{% if price_max %}price_max={{ price_max }}&{% endif %}{% if sort and sort != 'name' %}sort={{ sort }}&{% endif %}{% if available_only %}available_only=on&{% endif %}page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?{% if query %}q={{ query }}&{% endif %}{% if category_id %}category={{ category_id }}&{% endif %}{% if price_min %}price_min={{ price_min }}&{% endif %}{% if price_max %}price_max={{ price_max }}&{% endif %}{% if sort and sort != 'name' %}sort={{ sort }}&{% endif %}{% if available_only %}available_only=on&{% endif %}page={{ products.next_page_number }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-submit sort form
+    const sortSelect = document.getElementById('sort-select');
+    const filterForm = document.querySelector('form.col-lg-9');
+    sortSelect.form = filterForm;
+    
+    const availableCheckbox = document.getElementById('available-only');
+    availableCheckbox.form = filterForm;
+});
+</script>
 {% endblock %}

@@ -41,4 +41,11 @@ urlpatterns = [
     path('products/<slug:product_slug>/reviews/add/', views.add_review, name='add_review'),
     path('reviews/', views.all_reviews, name='all_reviews'),  
     path('reviews/add/', views.choose_product_for_review, name='choose_product_for_review'), 
+
+    #payment 
+    path('payment/<int:order_id>/', views.payment_select, name='payment_select'),
+
+    # Chat & Support
+    path('chatbot/', views.chatbot, name='chatbot'),
+    path('support/', views.support_view, name='support'),
 ]

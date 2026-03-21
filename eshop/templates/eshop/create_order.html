@@ -1,28 +1,52 @@
 {% extends 'eshop/base.html' %}
 
 {% block content %}
-  <div class="container mt-4">
-    <h1>Create Order</h1>
-
-    <form method="post" class="row">
+  <div class="order-details-container">
+    <h1 class="heading-orange">Shipping Details</h1>
+    
+    <form method="post">
       {% csrf_token %}
-      <div class="col-md-6">
-        {{ form.as_p }}
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          {{ form.first_name.label_tag }}
+          {{ form.first_name }}
+        </div>
+        <div class="col-md-6">
+          {{ form.last_name.label_tag }}
+          {{ form.last_name }}
+        </div>
+        <div class="col-md-6">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+        <div class="col-md-6">
+          {{ form.postal_code.label_tag }}
+          {{ form.postal_code }}
+        </div>
+        <div class="col-12">
+          {{ form.address.label_tag }}
+          {{ form.address }}
+        </div>
+        <div class="col-md-6">
+          {{ form.city.label_tag }}
+          {{ form.city }}
+        </div>
       </div>
-      <div class="col-md-6">
-        <h2>Your Cart Items:</h2>
-        <ul class="list-group">
+
+      <div class="order-summary card p-3 mb-4">
+        <h4>Order Summary</h4>
+        <ul class="list-group list-group-flush">
           {% for cart_item in cart.items.all %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              {{ cart_item.product.name }} (x{{ cart_item.quantity }})
-              <span class="badge bg-primary rounded-pill">$${{ cart_item.get_total_price }}</span>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{ cart_item.product.name }} (x{{ cart_item.quantity }})</span>
+              <span>${{ cart_item.get_total_price }}</span>
             </li>
           {% endfor %}
         </ul>
+        <div class="total-price mt-3 fw-bold">Total: ${{ cart.get_total_price }}</div>
       </div>
-      <div class="col-12 mt-3">
-        <button type="submit" class="btn btn-primary">Create Order</button>
-      </div>
+
+      <button type="submit" class="btn btn-orange w-100 py-2">Confirm & Proceed to Payment</button>
     </form>
   </div>
 {% endblock %}

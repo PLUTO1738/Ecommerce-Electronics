@@ -1,0 +1,101 @@
+{% extends 'eshop/base.html' %}
+{% load static %}
+
+{% block title %}Support Chat - E-SHOP{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card support-card shadow-lg border-0">
+                <div class="card-header bg-warning text-white text-center py-4">
+                    <h2 class="mb-0 text-uppercase"><i class="bi bi-chat-dots me-2"></i>Live Support Chat</h2>
+                    <p class="mb-0 mt-2">Ask about products, orders, or anything!</p>
+                </div>
+                <div class="card-body p-4">
+                    <div id="chat-replies" class="chat-replies mb-4 p-3 bg-light rounded border" style="height: 400px; overflow-y: auto;">
+                        <div class="welcome-msg text-center text-muted py-3">
+                            <i class="bi bi-robot fs-3 text-orange mb-2 d-block"></i>
+                            <strong>Hello! I'm here to help.</strong><br>
+                            Try asking: "iPhone price", "delivery time", "order status"
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="chat-input" class="form-control border-orange" placeholder="Type your message...">
+                        <button id="chat-send" class="btn btn-orange">
+                            <i class="bi bi-send"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatInput = document.getElementById("chat-input");
+    const chatReplies = document.getElementById("chat-replies");
+    const chatSend = document.getElementById("chat-send");
+
+    // Remove welcome message on first input
+    chatInput.addEventListener("focus", function() {
+        if (chatReplies.innerHTML.includes('welcome-msg')) {
+            chatReplies.innerHTML = '';
+        }
+    });
+
+    // Send on Enter
+    chatInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            sendMessage();
+        }
+    });
+
+    chatSend.addEventListener("click", sendMessage);
+
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // User message
+        chatReplies.innerHTML += `
+            <div class="d-flex justify-content-end mb-2">
+                <div class="p-2 bg-orange text-white rounded-pill max-w-75">
+                    ${message}
+                </div>
+            </div>
+        `;
+
+        chatInput.value = '';
+        chatReplies.scrollTop = chatReplies.scrollHeight;
+
+        // Bot response
+        fetch(`/chatbot/?message=${encodeURIComponent(message)}`)
+            .then(response => response.json())
+            .then(data => {
+                chatReplies.innerHTML += `
+                    <div class="d-flex justify-content-start mb-2">
+                        <div class="p-2 bg-light border rounded-3 max-w-75">
+                            <strong>Bot:</strong> ${data.response}
+                        </div>
+                    </div>
+                `;
+                chatReplies.scrollTop = chatReplies.scrollHeight;
+            })
+            .catch(() => {
+                chatReplies.innerHTML += `
+                    <div class="d-flex justify-content-start mb-2">
+                        <div class="p-2 bg-light border rounded-3 max-w-75">
+                            <strong>Bot:</strong> Sorry, something went wrong. Try again!
+                        </div>
+                    </div>
+                `;
+                chatReplies.scrollTop = chatReplies.scrollHeight;
+            });
+    }
+});
+</script>
+{% endblock %}

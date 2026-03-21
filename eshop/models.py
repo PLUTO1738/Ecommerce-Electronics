@@ -37,6 +37,10 @@ class Cart(models.Model):
     def __str__(self):
         return f'Cart for {self.user.username}'
 
+    @property
+    def get_total_price(self):
+        return sum(item.get_total_price() for item in self.items.all())
+
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -69,6 +73,10 @@ class Order(models.Model):
 
     def get_total_price(self):
         return sum(item.get_total_price() for item in self.items.all())
+    
+    def get_total_cost(self):
+        return self.get_total_price()
+    
     def __str__(self):
         return f'Order {self.id}'
 
@@ -83,6 +91,21 @@ class OrderItem(models.Model):
     
     def get_total_price(self):
         return self.quantity * self.price  # Use the stored price
+
+class Payment(models.Model):
+    order = models.OneToOneField(Order, on_delete=models.CASCADE, related_name='payment')
+    payment_method = models.CharField(max_length=10, choices=[('mobile', 'Mobile'), ('bank', 'Bank')])
+    account_number = models.CharField(max_length=50, help_text="Account number for payment")
+    pay_with = models.CharField(max_length=100, help_text="Payment reference/details")
+    status = models.CharField(max_length=50, choices=[
+        ('PENDING', 'Pending'),
+        ('PAID', 'Paid'),
+        ('FAILED', 'Failed'),
+    ], default='PENDING')
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Payment for Order {self.order.id} - {self.payment_method}'
 
 class ProductReview(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')

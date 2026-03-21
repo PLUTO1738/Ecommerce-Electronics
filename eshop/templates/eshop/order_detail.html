@@ -2,39 +2,47 @@
 
 {% block content %}
 <div class="order-details-container">
-  <h1 class="heading-orange">Order Details (#{{ order.id }})</h1>
-  <p class="order-date">Order Date: {{ order.created }}</p>
+  <h1 class="heading-orange">Order #{{ order.id }}</h1>
+  <p class="order-date">Placed: {{ order.created|date:"M d, Y H:i" }}</p>
+  
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <h3 class="sub-heading-orange">Billing Info</h3>
+      <ul class="billing-info">
+        <li><strong>Name:</strong> {{ order.first_name }} {{ order.last_name }}</li>
+        <li><strong>Email:</strong> {{ order.email }}</li>
+        <li><strong>Address:</strong> {{ order.address }}, {{ order.postal_code }} {{ order.city }}</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h3 class="sub-heading-orange">Status</h3>
+      <span class="badge bg-{% if order.status == 'PAID' %}success{% else %}warning{% endif %} fs-5">{{ order.status }}</span>
+      {% if order.paid %}<span class="ms-2 badge bg-success">PAID</span>{% endif %}
+    </div>
+  </div>
 
-  <h2 class="sub-heading-orange">Billing Information:</h2>
-  <ul class="billing-info">
-    <li>{{ order.first_name }} {{ order.last_name }}</li>
-    <li>{{ order.email }}</li>
-    <li>{{ order.address }}</li>
-    <li>{{ order.postal_code }} {{ order.city }}</li>
-  </ul>
-
-  <h2 class="sub-heading-orange">Order Items:</h2>
+  <h3 class="sub-heading-orange">Order Items</h3>
   <table class="order-table">
     <thead>
       <tr>
         <th>Product</th>
-        <th>Quantity</th>
+        <th>Qty</th>
         <th>Price</th>
         <th>Total</th>
       </tr>
     </thead>
     <tbody>
       {% for item in order.items.all %}
-        <tr>
-          <td>{{ item.product.name }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>${{ item.price }}</td>
-          <td>${{ item.get_total_price }}</td>
-        </tr>
+      <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ item.price }}</td>
+        <td>${{ item.get_total_price }}</td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>
 
-  <p class="total-price">Total Price: ${{ order.get_total_price }}</p>
+  <p class="total-price">Total: ${{ order.get_total_price }}</p>
 </div>
 {% endblock %}

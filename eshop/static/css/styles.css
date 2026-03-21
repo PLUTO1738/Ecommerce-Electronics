@@ -7,12 +7,10 @@ body {
 }
 
 hr.border-orange {
-    border-top: 5px solid orange !important; /* Adjust thickness */
-    opacity: 1;
+    border-top: 2px solid #f39c12;
 }
 .orange-line {
-    border: 4px solid orange !important;  /* Thick Orange Line */
-    opacity: 1; 
+    border: 2px solid #f39c12;
     margin-top: 10px;
 }
 /* Base styles for navigation links */
@@ -45,14 +43,14 @@ hr.border-orange {
 
 /* Product Card Styles */
 .product-card {
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #ffefe6 10%, #ffd1a6 90%); /* Soft orange gradient */
-    border: 3px solid #ff6600; /* Strong orange border */
-    box-shadow: 0px 5px 20px rgba(255, 102, 0, 0.7), 0px 0px 10px rgba(255, 85, 0, 0.9); /* Orange contrast shadow */
-    transition: all 0.3s ease-in-out;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
 }
 
 .product-card:hover {
@@ -89,17 +87,17 @@ hr.border-orange {
 
 /* Add to Cart Button */
 .btn-orange {
-    background-color: #cc4400; /* Deep Orange */
+    background-color: #f39c12;
     color: white;
-    font-size: 9rem;
-    font-weight: bold;
-    padding: 10px;
-    border: 2px solid black; /* Black edges */
-    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
     width: 100%;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3); /* Button shadow */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .btn-orange:hover {
@@ -139,7 +137,7 @@ hr.border-orange {
     height: 20px;
     padding: 0 6px;
     border-radius: 10px;
-    background-color: #dc3545;
+    background-color: #ff6600;
     color: white;
     font-size: 0.75rem;
     font-weight: bold; /* Make the text bold */
@@ -168,15 +166,15 @@ hr.border-orange {
 
 /* Category Items */
 .category-item {
-    background-color: #fff;
-    border-left: 5px solid #ff6600; /* Orange border on the left */
+    background-color: white;
+    border-left: 3px solid #f39c12;
     padding: 12px 15px;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    box-shadow: 2px 4px 10px rgba(255, 102, 0, 0.3); /* Orange shadow */
-    transition: all 0.3s ease-in-out;
-    text-transform: capitalize; /* Capitalize first letter */
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+    text-transform: capitalize;
 }
 
 .category-item:hover {
@@ -358,10 +356,7 @@ hr.border-orange {
     font-weight: bold;
 }
 
-/* 🔥 Make Everything Orange */
-body {
-    color: #ff6600 !important;
-}
+/* Clean body text - no forced orange */
 
 /* 🔥 Bold Orange Title */
 .title-orange {
@@ -422,7 +417,7 @@ body {
 .errorlist {
     list-style: none;
     padding: 0;
-    color: red;
+    color: #ff4500;
     font-size: 0.9rem;
 }
 
@@ -480,4 +475,151 @@ body {
 .btn-orange:hover {
     background-color: #e07a00;
 }
+
+
+/* Container fixed bottom-right */
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: white;
+    padding: 10px;
+}
+
+/* Replies area */
+#chat-replies {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Input + button container */
+#chat-input-area {
+    display: flex;
+    gap: 5px;
+}
+
+/* Input box */
+#chat-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ff6600;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Send button */
+#chat-send {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#chat-send:hover {
+    background-color: #e65c00;
+}
+
+/* Each reply line */
+#chat-replies div {
+    margin-bottom: 5px;
+}
+
+/* Navbar Search Integration */
+.navbar-search {
+    max-width: 300px;
+    border-radius: 20px 0 0 20px !important;
+    border-right: none;
+}
+
+.navbar .btn-outline-light {
+    border-left: none;
+    border-radius: 0 20px 20px 0 !important;
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.navbar-search:focus {
+    box-shadow: none;
+    border-color: #ff6600 !important;
+}
+
+/* Enhanced Filters */
+.filter-section input, .filter-section select {
+    border: 1px solid #ff6600;
+    border-radius: 8px;
+}
+
+.filter-section .form-control:focus {
+    border-color: #ff4400;
+    box-shadow: 0 0 0 0.2rem rgba(255, 102, 0, 0.25);
+}
+
+/* Support Page Styles */
+.support-card {
+    box-shadow: 0 15px 35px rgba(255, 102, 0, 0.2);
+    border: none;
+}
+
+.support-card .card-header {
+    background: linear-gradient(135deg, #ff6600, #ff8c00);
+}
+
+.chat-replies {
+    height: 400px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+
+.bg-orange {
+    background-color: #ff6600 !important;
+}
+
+.max-w-75 {
+    max-width: 75%;
+    word-wrap: break-word;
+}
+
+/* Responsive Product Grid */
+@media (max-width: 768px) {
+    .navbar-collapse .d-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .row.g-3 > div[class*='col-'] {
+        margin-bottom: 10px;
+    }
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: #ff6600;
+}
+
+.pagination .page-link:hover {
+    background-color: #ff6600;
+    color: white;
+}
+
+.pagination .active .page-link {
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
+.alert-info {
+    background-color: #fff3cd;
+    border-color: #ff6600;
+    color: #856404;
+}
+
 }

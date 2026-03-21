@@ -2,6 +2,7 @@ from django import forms
 from .models import Order, ProductReview
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Payment
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -29,6 +30,11 @@ class OrderForm(forms.ModelForm):
             'postal_code': forms.TextInput(attrs={'class': 'form-control'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = ['payment_method', 'account_number']
 
 class ReviewForm(forms.ModelForm):
     class Meta:
